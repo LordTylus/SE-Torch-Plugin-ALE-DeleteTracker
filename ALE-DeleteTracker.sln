@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALE-DeleteTracker", "ALE-DeleteTracker.csproj", "{BE9CE3CB-F226-4E3C-BE42-E8B3D2695AAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE9CE3CB-F226-4E3C-BE42-E8B3D2695AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9CE3CB-F226-4E3C-BE42-E8B3D2695AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9CE3CB-F226-4E3C-BE42-E8B3D2695AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9CE3CB-F226-4E3C-BE42-E8B3D2695AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {198E0CDB-DDF2-4AC3-A021-26A485230348}
+	EndGlobalSection
+EndGlobal
