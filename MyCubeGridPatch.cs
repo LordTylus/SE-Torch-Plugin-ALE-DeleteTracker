@@ -48,11 +48,11 @@ namespace ALE_DeleteTracker {
             if (grid == null)
                 return;
 
-            /* Never log Projections... */
-            if (grid.Physics == null)
-                return;
-
             try {
+
+                /* Never log Projections... */
+                if (grid.Physics == null)
+                    return;
 
                 DeleteTrackerPlugin plugin = DeleteTrackerPlugin.Instance;
                 DeleteConfig config = plugin.Config;
