@@ -48,6 +48,10 @@ namespace ALE_DeleteTracker {
             if (grid == null)
                 return;
 
+            /* Never log Projections... */
+            if (grid.Physics == null)
+                return;
+
             try {
 
                 DeleteTrackerPlugin plugin = DeleteTrackerPlugin.Instance;
