@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<PluginManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ALE DeleteTracker</Name>
+  <Guid>2ea955b8-6dec-4f9b-8662-25f6d568addc</Guid>
+  <Repository>None</Repository>
+  <Version>v1.0.0.3</Version>
+</PluginManifest>
