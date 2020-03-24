@@ -44,8 +44,6 @@ namespace ALE_DeleteTracker {
             }
 
             Instance = this;
-
-            torch.Managers.AddManager(new DeleteTrackerManager(torch));
         }
     }
 }

@@ -12,7 +12,8 @@ using VRage.Game.Entity;
 
 namespace ALE_DeleteTracker {
 
-    public class MyCubeGridPatch {
+    [PatchShim]
+    public static class MyCubeGridPatch {
 
         public static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -28,18 +29,9 @@ namespace ALE_DeleteTracker {
 
         public static void Patch(PatchContext ctx) {
 
-            ReflectedManager.Process(typeof(MyCubeGridPatch));
+            ctx.GetPattern(OnCloseRequest).Prefixes.Add(patchOnCloseRequest);
 
-            try {
-
-                ctx.GetPattern(OnCloseRequest).Prefixes.Add(patchOnCloseRequest);
-
-                Log.Info("Patched MyCubeGrid!");
-
-            } catch (Exception e) {
-
-                Log.Error(e, "Unable to patch MyCubeGrid");
-            }
+            Log.Debug("Patched MyCubeGrid!");
         }
 
         public static void OnCloseRequestImpl(MyEntity __instance) {

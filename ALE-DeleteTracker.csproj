@@ -168,7 +168,6 @@
     <Compile Include="Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DeleteTrackerManager.cs" />
     <Compile Include="DeleteTrackerPlugin.cs" />
     <Compile Include="MyCubeGridPatch.cs" />
     <Compile Include="PlayerUtils.cs" />
