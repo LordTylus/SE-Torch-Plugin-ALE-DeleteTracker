@@ -1,4 +1,6 @@
 ﻿using NLog;
+using NLog.Config;
+using NLog.Targets;
 using Sandbox.Game.Entities;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,35 @@ namespace ALE_DeleteTracker {
         internal static readonly MethodInfo patchOnCloseRequest =
             typeof(MyCubeGridPatch).GetMethod(nameof(OnCloseRequestImpl), BindingFlags.Static | BindingFlags.Public) ??
             throw new Exception("Failed to find patch method");
+
+        static MyCubeGridPatch() {
+
+            var basicLogTarget = new FileTarget {
+                FileName = "Logs/deleted-basic-${shortdate}.log",
+                Layout = "${var:logStamp} ${var:logContent}"
+            };
+
+            var fullLogTarget = new FileTarget {
+                FileName = "Logs/deleted-${shortdate}.log",
+                Layout = "${var:logStamp} ${var:logContent}"
+            };
+
+            LogManager.Configuration.AddTarget("deleter", fullLogTarget);
+            LogManager.Configuration.AddTarget("smalldeleter", basicLogTarget);
+
+            var fullRule = new LoggingRule("DeleteTrackerFull", LogLevel.Debug, fullLogTarget) {
+                Final = true
+            };
+
+            var basicRule = new LoggingRule("DeleteTrackerBasic", LogLevel.Debug, basicLogTarget) {
+                Final = true
+            };
+
+            LogManager.Configuration.LoggingRules.Insert(0, fullRule);
+            LogManager.Configuration.LoggingRules.Insert(0, basicRule);
+
+            LogManager.Configuration.Reload();
+        }
 
         public static void Patch(PatchContext ctx) {
 
