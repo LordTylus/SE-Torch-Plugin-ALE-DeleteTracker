@@ -11,6 +11,13 @@ namespace ALE_DeleteTracker {
         private bool _removalNPCShips = true;
         private bool _logDuplicates = false;
 
+        private string _loggingBasicFileName = "deleted-basic-${shortdate}.log";
+        private string _loggingFullFileName = "deleted-${shortdate}.log";
+
+        public string LoggingBasicFileName { get => _loggingBasicFileName; set => SetValue(ref _loggingBasicFileName, value); }
+
+        public string LoggingFullFileName { get => _loggingFullFileName; set => SetValue(ref _loggingFullFileName, value); }
+
         public bool EnableCompactLogging { get => _enableCompactLogging; set => SetValue(ref _enableCompactLogging, value); }
 
         public bool EnableFullLogging { get => _enableFullLogging; set => SetValue(ref _enableFullLogging, value); }

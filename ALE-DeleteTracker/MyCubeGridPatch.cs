@@ -29,20 +29,30 @@ namespace ALE_DeleteTracker {
             typeof(MyCubeGridPatch).GetMethod(nameof(OnCloseRequestImpl), BindingFlags.Static | BindingFlags.Public) ??
             throw new Exception("Failed to find patch method");
 
-        static MyCubeGridPatch() {
+        public static void ApplyLogging() {
+
+            var rules = LogManager.Configuration.LoggingRules;
+
+            for (int i = rules.Count - 1; i >= 0; i--) {
+
+                var rule = rules[i];
+
+                if (rule.LoggerNamePattern == "DeleteTrackerFull"
+                    || rule.LoggerNamePattern == "DeleteTrackerBasic")
+                    rules.RemoveAt(i);
+            }
+
+            var config = DeleteTrackerPlugin.Instance.Config;
 
             var basicLogTarget = new FileTarget {
-                FileName = "Logs/deleted-basic-${shortdate}.log",
+                FileName = "Logs/" + config.LoggingBasicFileName,
                 Layout = "${var:logStamp} ${var:logContent}"
             };
 
             var fullLogTarget = new FileTarget {
-                FileName = "Logs/deleted-${shortdate}.log",
+                FileName = "Logs/" + config.LoggingFullFileName,
                 Layout = "${var:logStamp} ${var:logContent}"
             };
-
-            LogManager.Configuration.AddTarget("deleter", fullLogTarget);
-            LogManager.Configuration.AddTarget("smalldeleter", basicLogTarget);
 
             var fullRule = new LoggingRule("DeleteTrackerFull", LogLevel.Debug, fullLogTarget) {
                 Final = true

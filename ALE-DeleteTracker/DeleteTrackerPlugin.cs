@@ -19,12 +19,19 @@ namespace ALE_DeleteTracker {
         private Persistent<DeleteConfig> _config;
         public DeleteConfig Config => _config?.Data;
 
-        public void Save() => _config.Save();
-
         /// <inheritdoc />
         public override void Init(ITorchBase torch) {
 
             base.Init(torch);
+
+            Instance = this;
+
+            SetUpConfig();
+            MyCubeGridPatch.ApplyLogging();
+        }
+
+        private void SetUpConfig() {
+
             var configFile = Path.Combine(StoragePath, "DeleteTracker.cfg");
 
             try {
@@ -42,8 +49,11 @@ namespace ALE_DeleteTracker {
                 _config = new Persistent<DeleteConfig>(configFile, new DeleteConfig());
                 _config.Save();
             }
+        }
 
-            Instance = this;
+        public void Save() {
+            _config.Save();
+            MyCubeGridPatch.ApplyLogging();
         }
     }
 }
