@@ -102,7 +102,8 @@ namespace ALE_DeleteTracker {
 
                 /* If we dont want closes on shutdown skip that. We detect it by looking for Unload() Method on MySession */
                 if (!config.RemovalOnShutdown)
-                    if (stacktrace.Contains("at Sandbox.Game.World.MySession.Unload()"))
+                    if (stacktrace.Contains("at Sandbox.Game.World.MySession.Unload()")
+                        || stacktrace.Contains("at Sandbox.Game.World.MySession.Unload_Patch0(MySession this)"))
                         return;
 
                 var gridOwnerList = grid.BigOwners;
